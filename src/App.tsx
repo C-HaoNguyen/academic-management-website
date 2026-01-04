@@ -1,11 +1,8 @@
 import './index.css'
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HeaderComponent from './components/header/HeaderComponent';
+import AppRoutes from './routes/AppRoutes';
 
 function App() {
-    return <>
-        Academic Management System
-    </>;
+    return <AppRoutes />;
 }
 
 export default App
