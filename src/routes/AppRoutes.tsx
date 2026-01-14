@@ -1,9 +1,11 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import HomePage from '../pages/home/Homepage.tsx';
-import Login from '../pages/auth/LoginPage.tsx';
-import Dashboard from '../pages/dashboard/DashboardPage';
-import CourseList from '../pages/courses/CourseList';
-import Layout from '../components/layout/Layout';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomePage from '../pages/home/HomePage.tsx';
+import Login from '../pages/auth/Login.tsx';
+import Signup from '../pages/auth/Signup.tsx';
+import PublicLayout from '../components/layout/PublicLayout.tsx';
+import CourseList from '../pages/courses/CourseList.tsx';
+import LecturerPage from '../pages/leturer/LecturerPage.tsx';
+import ContactPage from '../pages/about/ContacePage.tsx';
 
 const AppRoutes = () => {
     return (
@@ -11,12 +13,14 @@ const AppRoutes = () => {
             <Routes>
                 {/* Public routes */}
                 <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
 
                 {/* Protected routes */}
-                <Route element={<Layout />}>
+                <Route element={<PublicLayout />}>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/courses" element={<CourseList />} />
+                    <Route path="/lecturer" element={<LecturerPage />} />
+                    <Route path="/contact" element={<ContactPage />} />
                 </Route>
 
             </Routes>

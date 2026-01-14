@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 type Tab = {
     id: string;
@@ -8,16 +8,14 @@ type Tab = {
 
 function Header() {
     const tabs: Tab[] = [
-        { id: "home", label: "Home", href: "/" },
-        { id: "courses", label: "Courses", href: "/courses" },
-        { id: "my-courses", label: "My Courses", href: "/student/courses" },
-        { id: "dashboard", label: "Dashboard", href: "/student/dashboard" },
+        { id: "home", label: "Trang Chủ", href: "/" },
+        { id: "courses", label: "Các Khóa Học", href: "/courses" },
+        { id: "leturer", label: "Đội Ngũ", href: "/lecturer" },
+        { id: "contact", label: "Liên Hệ", href: "/contact" },
     ];
 
-    const [activeTab, setActiveTab] = useState("home");
-
     return (
-        <header className="w-full bg-white border-b border-gray-200">
+        <header className="w-full bg-white border-b border-gray-200 sticky top-0 z-50">
             <div className="mx-auto max-w-7xl px-6">
                 <div className="flex h-16 items-center justify-between">
 
@@ -27,35 +25,40 @@ function Header() {
                     </div>
 
                     {/* Tabs */}
-                    <nav className="flex space-x-8">
-                        {tabs.map((tab) => {
-                            const isActive = activeTab === tab.id;
-
-                            return (
-                                <a
-                                    key={tab.id}
-                                    href={tab.href}
-                                    onClick={() => setActiveTab(tab.id)}
-                                    className={`relative pb-1 text-sm font-medium transition
-                                        ${isActive
-                                            ? "text-blue-600"
-                                            : "text-gray-600 hover:text-blue-500"}
-                                            `}
-                                >
-                                    {tab.label}
-
-                                    {/* underline */}
-                                    {isActive && (
-                                        <span className="absolute left-0 -bottom-1 h-0.5 w-full bg-blue-600 rounded"></span>
-                                    )}
-                                </a>
-                            );
-                        })}
+                    <nav className="flex items-center space-x-2">
+                        {tabs.map((tab) => (
+                            <NavLink
+                                key={tab.id}
+                                to={tab.href}
+                                end={tab.href === "/"}
+                                className={({ isActive }) =>
+                                    `relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200
+                                    ${isActive
+                                        ? "bg-blue-100 text-blue-700 shadow-sm"
+                                        : "text-gray-600 hover:bg-gray-100 hover:text-blue-600"}`
+                                }
+                            >
+                                {tab.label}
+                            </NavLink>
+                        ))}
                     </nav>
 
-                    {/* User */}
-                    <div className="text-sm text-gray-700">
-                        Hi, Student 👋
+                    {/* Auth buttons */}
+                    <div className="flex items-center gap-3">
+                        <NavLink
+                            to="/login"
+                            className="px-4 py-2 text-base font-medium text-gray-600 rounded-xl transition-all duration-200 hover:border-blue-100 hover:bg-gray-100 hover:text-blue-600"
+                        >
+                            Đăng nhập
+                        </NavLink>
+
+                        <NavLink
+                            to="/signup"
+                            className="px-4 py-2 text-base font-medium text-white bg-blue-600 rounded-xl transition-all duration-200
+                   hover:bg-blue-700 shadow-sm"
+                        >
+                            Đăng ký
+                        </NavLink>
                     </div>
 
                 </div>
