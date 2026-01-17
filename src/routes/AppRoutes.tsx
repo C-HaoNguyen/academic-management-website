@@ -3,8 +3,8 @@ import HomePage from '../pages/home/HomePage.tsx';
 import Login from '../pages/auth/Login.tsx';
 import Signup from '../pages/auth/Signup.tsx';
 import PublicLayout from '../components/layout/PublicLayout.tsx';
-import CourseList from '../pages/courses/CourseList.tsx';
-import LecturerPage from '../pages/leturer/LecturerPage.tsx';
+import CourseList from '../pages/courses/CourseListPage.tsx';
+import LecturerPage from '../pages/lecturer/LecturerPage.tsx';
 import ContactPage from '../pages/about/ContacePage.tsx';
 
 const AppRoutes = () => {

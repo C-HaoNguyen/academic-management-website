@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
+import TeacherCard, { type Teacher } from "../../components/common/TeacherCard";
 
-const lecturers = [
+const lecturers: Teacher[] = [
     {
         name: "Nguyễn Văn A",
         role: "Giảng viên Front-end",
@@ -30,7 +31,6 @@ const lecturers = [
 const LecturerPage = () => {
     return (
         <div className="bg-gray-50">
-
             {/* HERO */}
             <section className="pt-24 pb-16">
                 <div className="mx-auto max-w-7xl px-6 text-center">
@@ -58,41 +58,13 @@ const LecturerPage = () => {
             {/* LECTURER LIST */}
             <section className="pb-20">
                 <div className="mx-auto max-w-7xl px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-
                     {lecturers.map((lec, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.4, delay: index * 0.1 }}
-                            className="
-                                bg-white rounded-2xl p-6
-                                shadow-sm hover:shadow-lg
-                                transition-all duration-300
-                                text-center
-                            "
-                        >
-                            <img
-                                src={lec.avatar}
-                                alt={lec.name}
-                                className="w-24 h-24 rounded-full mx-auto object-cover"
-                            />
-
-                            <h3 className="mt-4 text-lg font-semibold text-gray-900">
-                                {lec.name}
-                            </h3>
-
-                            <p className="mt-1 text-blue-600 text-sm font-medium">
-                                {lec.role}
-                            </p>
-
-                            <p className="mt-3 text-sm text-gray-600">
-                                {lec.desc}
-                            </p>
-                        </motion.div>
+                        <TeacherCard
+                            key={lec.name}
+                            teacher={lec}
+                            index={index}
+                        />
                     ))}
-
                 </div>
             </section>
 
@@ -121,7 +93,6 @@ const LecturerPage = () => {
                     </button>
                 </motion.div>
             </section>
-
         </div>
     );
 };
