@@ -1,27 +1,32 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
 
 import HomePage from "../pages/public/home/HomePage";
-import Login from "../pages/auth/Login";
-import Signup from "../pages/auth/Signup";
-
-import PublicLayout from "../components/layout/PublicLayout";
-import StudentLayout from "../components/layout/StudentLayout";
-
-import CourseList from "../pages/public/courses/CourseListPage";
-import CourseDetail from "../pages/public/courses/CourseDetail";
-
 import LecturerPage from "../pages/public/lecturer/LecturerPage";
 import ContactPage from "../pages/public/about/ContacePage";
-
+import Login from "../pages/auth/Login";
+import Signup from "../pages/auth/Signup";
+import CourseList from "../pages/public/courses/CourseListPage";
+import CourseDetail from "../pages/public/courses/CourseDetail";
 import Checkout from "../pages/public/payment/Checkout";
 
+import PublicLayout from "../components/layout/public/PublicLayout";
+import StudentLayout from "../components/layout/student/StudentLayout";
+import AdminLayout from "../components/layout/admin/AdminLayout";
+
+{/* STUDENT */ }
 import Dashboard from "../pages/student/dashboard/Dashboard";
 import MyCourses from "../pages/student/my-courses/MyCourses";
 import LearningProfile from "../pages/student/learning-profile/LearningProfile";
 import TestPractice from "../pages/student/test-practice/TestPractice";
-
-import ProtectedRoute from "./ProtectedRoute";
 import Profile from "../pages/student/learning-profile/Profile";
+
+{/* ADMIN */ }
+import AdminDashboard from "../pages/admin/AdminDashboard";
+import AdminUsers from "../pages/admin/AdminUsers";
+import AdminCourses from "../pages/admin/AdminCourses";
+import AdminCategories from "../pages/admin/AdminCategories";
+import AdminOrders from "../pages/admin/AdminOrders";
 
 const AppRoutes = () => {
     return (
@@ -59,11 +64,27 @@ const AppRoutes = () => {
                         </ProtectedRoute>
                     }
                 >
-                    <Route path="profile" element={<Profile />} />
-                    <Route path="dashboard" element={<Dashboard />} />
-                    <Route path="my-courses" element={<MyCourses />} />
-                    <Route path="learning-profile" element={<LearningProfile />} />
-                    <Route path="test-practice" element={<TestPractice />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/my-courses" element={<MyCourses />} />
+                    <Route path="/learning-profile" element={<LearningProfile />} />
+                    <Route path="/test-practice" element={<TestPractice />} />
+                </Route>
+
+                {/* ===== ADMIN (PRIVATE) ===== */}
+                <Route
+                    path="/admin"
+                    element={
+                        <ProtectedRoute>
+                            <AdminLayout />
+                        </ProtectedRoute>
+                    }
+                >
+                    <Route path="/dashboard" element={<AdminDashboard />} />
+                    <Route path="/students" element={<AdminUsers />} />
+                    <Route path="/courses" element={<AdminCourses />} />
+                    <Route path="/categories" element={<AdminCategories />} />
+                    <Route path="/orders" element={<AdminOrders />} />
                 </Route>
             </Routes>
         </BrowserRouter>
