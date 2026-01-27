@@ -23,26 +23,26 @@ const Footer = () => {
 
                 {/* Links */}
                 <div>
-                    <h3 className="text-white font-semibold mb-4">Platform</h3>
+                    <h3 className="text-white font-semibold mb-4">Về Ademy</h3>
                     <ul className="space-y-2 text-sm">
-                        <li className="hover:text-white transition cursor-pointer">Courses</li>
-                        <li className="hover:text-white transition cursor-pointer">Instructors</li>
-                        <li className="hover:text-white transition cursor-pointer">Dashboard</li>
+                        <li className="hover:text-white transition cursor-pointer">Các khóa học</li>
+                        <li className="hover:text-white transition cursor-pointer">Đội ngũ giảng dạy</li>
+                        <li className="hover:text-white transition cursor-pointer">Liên hệ</li>
                     </ul>
                 </div>
 
                 <div>
-                    <h3 className="text-white font-semibold mb-4">Support</h3>
+                    <h3 className="text-white font-semibold mb-4">Dịch vụ</h3>
                     <ul className="space-y-2 text-sm">
-                        <li className="hover:text-white transition cursor-pointer">Help Center</li>
-                        <li className="hover:text-white transition cursor-pointer">Privacy Policy</li>
-                        <li className="hover:text-white transition cursor-pointer">Terms of Service</li>
+                        <li className="hover:text-white transition cursor-pointer">Trung tâm hỗ trợ</li>
+                        <li className="hover:text-white transition cursor-pointer">Chính sách bảo mật</li>
+                        <li className="hover:text-white transition cursor-pointer">Điều khoản dịch vụ</li>
                     </ul>
                 </div>
 
                 {/* Contact */}
                 <div>
-                    <h3 className="text-white font-semibold mb-4">Contact</h3>
+                    <h3 className="text-white font-semibold mb-4">Liên hệ</h3>
                     <ul className="space-y-2 text-sm">
                         <li>Email: support@ademy.edu</li>
                         <li>Phone: +84 123 456 789</li>

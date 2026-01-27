@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import TeacherCard, { type Teacher } from "../../components/common/TeacherCard";
+import { useNavigate } from "react-router-dom";
+import TeacherCard, { type Teacher } from "../../../components/common/TeacherCard";
 
 const lecturers: Teacher[] = [
     {
@@ -29,6 +30,8 @@ const lecturers: Teacher[] = [
 ];
 
 const LecturerPage = () => {
+    const navigate = useNavigate();
+
     return (
         <div className="bg-gray-50">
             {/* HERO */}
@@ -85,6 +88,7 @@ const LecturerPage = () => {
                         giàu kinh nghiệm của Ademy.
                     </p>
                     <button
+                        onClick={() => navigate("/courses")}
                         className="mt-8 px-8 py-3 rounded-xl bg-blue-600
                                    text-white font-medium
                                    hover:bg-blue-700 transition shadow-sm"

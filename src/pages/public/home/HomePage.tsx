@@ -6,7 +6,7 @@ const HomePage = () => {
         <div className="bg-gray-50">
             {/* HERO SECTION */}
             <section className="relative overflow-hidden">
-                <div className="mx-auto max-w-7xl px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div className="mx-auto max-w-7xl px-4 py-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
                     {/* Left content */}
                     <motion.div
@@ -16,11 +16,11 @@ const HomePage = () => {
                     >
                         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
                             Nền tảng quản lý & học tập <br />
-                            <span className="text-blue-600">trực tuyến toàn diện</span>
+                            <span className="text-blue-600 text-5xl">trực tuyến toàn diện</span>
                         </h1>
 
                         <p className="mt-6 text-gray-600 text-lg">
-                            Ademy giúp học viên, giảng viên và nhà quản lý theo dõi
+                            Ademy giúp học viên và giảng viên có thể theo dõi
                             tiến trình học tập, quản lý khóa học và nâng cao hiệu quả đào tạo.
                         </p>
 
