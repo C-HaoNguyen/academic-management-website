@@ -64,11 +64,11 @@ const AppRoutes = () => {
                         </ProtectedRoute>
                     }
                 >
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/my-courses" element={<MyCourses />} />
-                    <Route path="/learning-profile" element={<LearningProfile />} />
-                    <Route path="/test-practice" element={<TestPractice />} />
+                    <Route path="profile" element={<Profile />} />
+                    <Route path="dashboard" element={<Dashboard />} />
+                    <Route path="my-courses" element={<MyCourses />} />
+                    <Route path="learning-profile" element={<LearningProfile />} />
+                    <Route path="test-practice" element={<TestPractice />} />
                 </Route>
 
                 {/* ===== ADMIN (PRIVATE) ===== */}
@@ -80,11 +80,11 @@ const AppRoutes = () => {
                         </ProtectedRoute>
                     }
                 >
-                    <Route path="/dashboard" element={<AdminDashboard />} />
-                    <Route path="/students" element={<AdminUsers />} />
-                    <Route path="/courses" element={<AdminCourses />} />
-                    <Route path="/categories" element={<AdminCategories />} />
-                    <Route path="/orders" element={<AdminOrders />} />
+                    <Route path="dashboard" element={<AdminDashboard />} />
+                    <Route path="users" element={<AdminUsers />} />
+                    <Route path="courses" element={<AdminCourses />} />
+                    <Route path="categories" element={<AdminCategories />} />
+                    <Route path="orders" element={<AdminOrders />} />
                 </Route>
             </Routes>
         </BrowserRouter>

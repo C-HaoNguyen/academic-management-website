@@ -1,8 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { Bell, ChevronDown, LogOut, User } from "lucide-react";
+import {
+    Bell,
+    ChevronDown,
+    LogOut,
+    User,
+    Shield,
+    ShieldCheck
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const StudentHeader = () => {
+const AdminHeader = () => {
     const [open, setOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
@@ -18,7 +25,8 @@ const StudentHeader = () => {
             }
         };
         document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
+        return () =>
+            document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
     return (
@@ -26,13 +34,13 @@ const StudentHeader = () => {
             {/* Left: Logo */}
             <div
                 className="flex items-center gap-2 cursor-pointer"
-                onClick={() => navigate("/")}
+                onClick={() => navigate("/admin/dashboard")}
             >
-                <div className="w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center font-bold">
-                    A
+                <div className="w-9 h-9 bg-blue-600 text-white rounded-lg flex items-center justify-center">
+                    <ShieldCheck size={20} />
                 </div>
                 <span className="font-semibold text-gray-800 text-xl">
-                    Ademy
+                    Ademy Admin
                 </span>
             </div>
 
@@ -48,7 +56,6 @@ const StudentHeader = () => {
                     "
                 >
                     <Bell size={20} className="text-gray-600" />
-                    {/* Badge */}
                     <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />
                 </button>
 
@@ -64,8 +71,8 @@ const StudentHeader = () => {
                         "
                     >
                         <img
-                            src="https://i.pravatar.cc/40"
-                            alt="avatar"
+                            src="https://i.pravatar.cc/40?img=12"
+                            alt="admin avatar"
                             className="w-8 h-8 rounded-full object-cover"
                         />
                         <ChevronDown
@@ -79,10 +86,9 @@ const StudentHeader = () => {
                     {open && (
                         <div
                             className="
-                                absolute right-0 mt-2 w-48
+                                absolute right-0 mt-2 w-52
                                 bg-white border rounded-xl shadow-lg
                                 overflow-hidden
-                                animate-dropdown
                             "
                         >
                             <button
@@ -91,10 +97,21 @@ const StudentHeader = () => {
                                     px-4 py-3 text-sm text-gray-700
                                     hover:bg-gray-100
                                 "
-                                onClick={() => navigate("/student/profile")}
+                                onClick={() => navigate("/admin/profile")}
                             >
                                 <User size={16} />
-                                Chỉnh sửa hồ sơ
+                                Hồ sơ Admin
+                            </button>
+
+                            <button
+                                className="
+                                    w-full flex items-center gap-2
+                                    px-4 py-3 text-sm text-gray-700
+                                    hover:bg-gray-100
+                                "
+                            >
+                                <Shield size={16} />
+                                Quyền quản trị
                             </button>
 
                             <div className="h-px bg-gray-100" />
@@ -108,7 +125,8 @@ const StudentHeader = () => {
                                 onClick={() => {
                                     localStorage.removeItem("accessToken");
                                     localStorage.removeItem("refreshToken");
-                                    navigate("/login");
+                                    localStorage.removeItem("userRole");
+                                    navigate("/login", { replace: true });
                                 }}
                             >
                                 <LogOut size={16} />
@@ -122,4 +140,4 @@ const StudentHeader = () => {
     );
 };
 
-export default StudentHeader;
+export default AdminHeader;

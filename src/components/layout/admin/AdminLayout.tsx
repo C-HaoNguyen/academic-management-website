@@ -1,45 +1,22 @@
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import AdminHeader from "./AdminHeader";
+import AdminSidebar from "./AdminSidebar";
 
 const AdminLayout = () => {
-    const linkClass = ({ isActive }: { isActive: boolean }) =>
-        isActive
-            ? "bg-blue-100 text-blue-600 font-medium"
-            : "text-gray-600 hover:bg-gray-100";
-
     return (
         <div className="min-h-screen flex bg-gray-50">
-            {/* Sidebar */}
-            <aside className="w-64 bg-white border-r">
-                <div className="p-4 text-xl font-bold">⚙️ Admin</div>
-                <nav className="flex flex-col gap-1 px-2">
-                    <NavLink to="/admin/dashboard" className={linkClass + " px-3 py-2 rounded-lg"}>
-                        📊 Dashboard
-                    </NavLink>
-                    <NavLink to="/admin/users" className={linkClass + " px-3 py-2 rounded-lg"}>
-                        👤 Users
-                    </NavLink>
-                    <NavLink to="/admin/courses" className={linkClass + " px-3 py-2 rounded-lg"}>
-                        🎓 Courses
-                    </NavLink>
-                    <NavLink to="/admin/categories" className={linkClass + " px-3 py-2 rounded-lg"}>
-                        🗂️ Categories
-                    </NavLink>
-                    <NavLink to="/admin/orders" className={linkClass + " px-3 py-2 rounded-lg"}>
-                        💳 Orders
-                    </NavLink>
-                </nav>
-            </aside>
+            {/* Header */}
+            <div className="fixed top-0 left-0 right-0 h-16 z-50">
+                <AdminHeader />
+            </div>
 
-            {/* Main content */}
-            <div className="flex-1 flex flex-col">
-                {/* Header */}
-                <header className="h-14 bg-white border-b flex items-center justify-between px-6">
-                    <h1 className="font-semibold">Admin Panel</h1>
-                    <div className="text-sm text-gray-600">Xin chào, Admin</div>
-                </header>
+            {/* Body */}
+            <div className="pt-16">
+                <aside className="w-64 bg-white border-r flex flex-col fixed top-16 left-0 h-[calc(100vh-64px)]">
+                    <AdminSidebar />
+                </aside>
 
-                {/* Page content */}
-                <main className="flex-1 p-6">
+                <main className="ml-64 h-[calc(100vh-64px)] overflow-y-auto p-6 bg-gray-50">
                     <Outlet />
                 </main>
             </div>

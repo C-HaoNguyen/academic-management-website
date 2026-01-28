@@ -237,12 +237,12 @@ const Signup = () => {
                 {/* Redirect login */}
                 <p className="text-sm text-center text-gray-600 mt-4">
                     Đã có tài khoản?{" "}
-                    <a
-                        href="/login"
+                    <Link
+                        to={"/login"}
                         className="text-blue-600 hover:underline"
                     >
                         Đăng nhập
-                    </a>
+                    </Link>
                 </p>
             </form>
         </div>

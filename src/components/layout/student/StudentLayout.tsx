@@ -1,5 +1,5 @@
 import StudentHeader from "./StudentHeader";
-import Sidebar from "./Sidebar";
+import Sidebar from "./StudentSidebar";
 import { Outlet } from "react-router-dom";
 
 const StudentLayout = () => {

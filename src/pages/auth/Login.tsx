@@ -35,7 +35,12 @@ const Login = () => {
             localStorage.setItem("userRole", data.role);
             localStorage.setItem("username", data.username);
 
-            navigate("/student/dashboard");
+            if (data.role === "admin") {
+                navigate("/admin/dashboard", { replace: true });
+            } else {
+                navigate("/student/dashboard", { replace: true });
+            }
+            
         } catch (error) {
             console.error("Login error:", error);
             alert("Không thể kết nối server");
@@ -127,9 +132,12 @@ const Login = () => {
                 {/* Signup */}
                 <p className="text-sm text-center text-gray-600 mt-4">
                     Bạn mới biết đến Ademy?{" "}
-                    <a href="/signup" className="text-blue-600 hover:underline">
+                    <Link
+                        to={"/signup"}
+                        className="text-blue-600 hover:underline"
+                    >
                         Đăng ký ngay
-                    </a>
+                    </Link>
                 </p>
             </form>
         </div>

@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
     LayoutDashboard,
     BookOpen,
@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 
 const Sidebar = () => {
-    const navigate = useNavigate();
 
     const linkClass = ({ isActive }: any) =>
         `
@@ -16,10 +15,9 @@ const Sidebar = () => {
         px-4 py-5 rounded-2xl
         text-lg font-medium
         transition-all duration-200
-        ${
-            isActive
-                ? "bg-blue-50 text-blue-600"
-                : "text-gray-600 hover:bg-gray-100 hover:text-gray-800"
+        ${isActive
+            ? "bg-blue-50 text-blue-600"
+            : "text-gray-600 hover:bg-gray-100 hover:text-gray-800"
         }
     `;
 
@@ -53,9 +51,11 @@ const Sidebar = () => {
 
             {/* Back to home button */}
             <div className="p-3 border-t">
-                <button
-                    onClick={() => navigate("/")}
-                    className="
+                <Link
+                    to={"/"}
+                >
+                    <button
+                        className="
                         group w-full flex items-center gap-3
                         px-4 py-2 rounded-lg text-lg font-medium
                         text-gray-600
@@ -63,13 +63,14 @@ const Sidebar = () => {
                         transition-all duration-200
                         active:scale-[0.97]
                     "
-                >
-                    <ArrowLeft
-                        size={22}
-                        className="transition-transform duration-200 group-hover:-translate-x-1"
-                    />
-                    Trở về trang chủ
-                </button>
+                    >
+                        <ArrowLeft
+                            size={22}
+                            className="transition-transform duration-200 group-hover:-translate-x-1"
+                        />
+                        Trở về trang chủ
+                    </button>
+                </Link>
             </div>
         </aside>
     );
