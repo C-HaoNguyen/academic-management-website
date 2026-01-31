@@ -9,8 +9,10 @@ interface JwtPayload {
 }
 
 export function isLoggedIn() {
-    const accessToken = localStorage.getItem("accessToken");
-    return !!accessToken;
+    const token = getAccessToken();
+    if (!token) return false;
+
+    return !isTokenExpired();
 }
 
 export function getAccessToken() {
@@ -33,7 +35,7 @@ export function extractRole(): string | null {
 
     if (decoded.role) return decoded.role;
 
-    if (decoded.roles?.length) 
+    if (decoded.roles?.length)
         return decoded.roles[0].toUpperCase().replace("ROLE_", "");
 
     if (decoded.authorities?.length)
@@ -50,4 +52,10 @@ export function isTokenExpired() {
     if (!decoded.exp) return false;
 
     return decoded.exp * 1000 < Date.now();
+}
+
+export function logout() {
+    localStorage.clear();
+    // hard redirect để reset toàn bộ state
+    window.location.href = "/login"; 
 }

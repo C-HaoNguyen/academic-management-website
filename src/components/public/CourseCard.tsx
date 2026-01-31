@@ -4,16 +4,17 @@ import { Link } from "react-router-dom";
 export type Course = {
     courseId: number;
     title: string;
-    description?: string;
-    price?: number;
-    thumbnail?: string;
-    instructor: {
-        username: string;
-        fullName: string;
+    description?: string | null;
+    price?: number | null;
+    thumbnail?: string | null;
+    level?: string | null;
+    instructor?: {
+        username?: string;
+        fullName?: string;
     };
     category?: {
-        categoryId: number;
-        categoryName: string;
+        categoryId?: number;
+        categoryName?: string;
     };
 };
 
@@ -34,7 +35,7 @@ const CourseCard = ({ course, index = 0 }: CourseCardProps) => {
             {/* Thumbnail */}
             <div className="h-44 overflow-hidden">
                 <img
-                    src={course.thumbnail}
+                    src={course.thumbnail || "/default-course.png"}
                     alt={course.title}
                     className="h-full w-full object-cover hover:scale-105 transition duration-300"
                 />
@@ -47,7 +48,7 @@ const CourseCard = ({ course, index = 0 }: CourseCardProps) => {
                 </h3>
 
                 <p className="text-sm text-gray-500 mb-2">
-                    Giảng viên: {course.instructor?.fullName}
+                    Giảng viên: {course.instructor?.fullName || "Đang cập nhật"}
                 </p>
 
                 {course.category && (
@@ -64,7 +65,7 @@ const CourseCard = ({ course, index = 0 }: CourseCardProps) => {
 
                 <div className="flex items-center justify-between">
                     <span className="text-lg font-semibold text-indigo-600">
-                        {course.price
+                        {course.price && course.price >0
                             ? `${course.price.toLocaleString()}₫`
                             : "Miễn phí"}
                     </span>

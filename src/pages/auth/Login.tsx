@@ -1,16 +1,23 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
 
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from || null;
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [usernameTouched, setUsernameTouched] = useState(false);
+    const [passwordTouched, setPasswordTouched] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
     async function handleLogin() {
         try {
+            setError(null);
+
             const response = await fetch("http://localhost:8080/auth/login", {
                 method: "POST",
                 headers: {
@@ -23,8 +30,8 @@ const Login = () => {
             });
 
             if (!response.ok) {
-                const errorText = await response.text();
-                alert(errorText);
+                const errorMessage = await response.text();
+                setError(errorMessage);
                 return;
             }
 
@@ -35,12 +42,16 @@ const Login = () => {
             localStorage.setItem("userRole", data.role);
             localStorage.setItem("username", data.username);
 
-            if (data.role === "admin") {
+            if (data.role === "ADMIN") {
                 navigate("/admin/dashboard", { replace: true });
+                return;
+            }
+
+            if (from) {
+                navigate(from, { replace: true });
             } else {
                 navigate("/student/dashboard", { replace: true });
             }
-            
         } catch (error) {
             console.error("Login error:", error);
             alert("Không thể kết nối server");
@@ -50,7 +61,10 @@ const Login = () => {
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <form
-                onSubmit={(e) => e.preventDefault()}
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    handleLogin();
+                }}
                 className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md"
             >
                 <Link
@@ -111,6 +125,12 @@ const Login = () => {
                     </div>
                 </div>
 
+                {error && (
+                    <div className="mb-4 bg-red-50 px-3 py-2 text-sm text-red-600">
+                        {error}
+                    </div>
+                )}
+
                 <div className="flex items-center justify-between mb-4 text-sm">
                     {/* Forgot password */}
                     <Link
@@ -122,9 +142,8 @@ const Login = () => {
                 </div>
 
                 <button
-                    type="button"
+                    type="submit"
                     className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
-                    onClick={handleLogin}
                 >
                     Đăng nhập
                 </button>

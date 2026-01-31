@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { ChevronDown, LogOut, User } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { isLoggedIn } from "../../../utils/AuthUtils";
+import { isLoggedIn } from "../../utils/AuthUtils";
 
 type Tab = {
     id: string;

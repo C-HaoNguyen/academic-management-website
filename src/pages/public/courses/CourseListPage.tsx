@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import CourseCard from "../../../components/common/CourseCard";
+import CourseCard from "../../../components/public/CourseCard";
 import { getAccessToken } from "../../../utils/AuthUtils";
-import { useNavigate } from "react-router-dom";
 
 const toggleValue = (
     value: string,
-    list: string[],
+    _list: string[],
     setList: React.Dispatch<React.SetStateAction<string[]>>
 ) => {
     setList((prev) =>
@@ -16,22 +15,39 @@ const toggleValue = (
     );
 };
 
+type Course = {
+    courseId: number;
+    title: string;
+    description?: string;
+    price?: number;
+    thumbnail?: string;
+    level?: string;
+    instructor?: {
+        username?: string;
+        fullName?: string;
+    };
+    category?: {
+        categoryId: number;
+        categoryName?: string;
+    };
+};
+
 const CourseList = () => {
 
-    const navigate = useNavigate();
-    const [courses, setCourses] = useState<any[]>([]);
+    const [allCourses, setAllCourses] = useState<Course[]>([]);
+    const [filteredCourses, setFilteredCourses] = useState<Course[]>([]);
     const [filterValue, setFilterValue] = useState("");
 
     const ITEMS_PER_PAGE = 9;
     const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = Math.ceil(courses.length / ITEMS_PER_PAGE);
-    const paginatedCourses = courses.slice(
+    const totalPages = Math.ceil(filteredCourses.length / ITEMS_PER_PAGE);
+    const paginatedCourses = filteredCourses.slice(
         (currentPage - 1) * ITEMS_PER_PAGE,
         currentPage * ITEMS_PER_PAGE
     );
 
-    const categoryOptions = ["Frontend", "Backend", "Design"];
-    const levelOptions = ["Beginner", "Intermediate", "Advanced"];
+    const [categoryOptions, setCategoryOptions] = useState<string[]>([]);
+    const [levelOptions, setLevelOptions] = useState<string[]>([]);
     type DropdownType = "category" | "level" | null;
     const [activeDropdown, setActiveDropdown] = useState<DropdownType>(null);
     const [categories, setCategories] = useState<string[]>([]);
@@ -39,29 +55,57 @@ const CourseList = () => {
 
     useEffect(() => {
         refreshCourseList();
+    }, []);
+
+    useEffect(() => {
+        let result = [...allCourses];
+
+        // Search
+        if (filterValue.trim()) {
+            const keyword = filterValue.toLowerCase();
+            result = result.filter((c) =>
+                c.title.toLowerCase().includes(keyword) ||
+                c.description?.toLowerCase().includes(keyword) ||
+                c.instructor?.fullName?.toLowerCase().includes(keyword)
+            );
+        }
+
+        // Category
+        if (categories.length > 0) {
+            result = result.filter(
+                (c) =>
+                    c.category?.categoryName &&
+                    categories.includes(c.category.categoryName)
+            );
+        }
+
+        // Level
+        if (levels.length > 0) {
+            result = result.filter(
+                (c) =>
+                    c.level &&
+                    levels.includes(c.level)
+            );
+        }
+
+        setFilteredCourses(result);
         setCurrentPage(1);
-    }, [filterValue]);
+    }, [filterValue, categories, levels, allCourses]);
 
     async function refreshCourseList() {
-        const response = await fetch(
-            "http://localhost:8080/courses",
-            {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${getAccessToken()}`,
-                },
-            }
-        );
-
+        const response = await fetch("http://localhost:8080/courses", {
+            headers: {
+                Authorization: `Bearer ${getAccessToken()}`,
+            },
+        });
         const data = await response.json();
-
-        // map từ DTO backend → structure FE dùng
-        const mappedCourses = data.map((item: any) => ({
+        const mappedCourses: Course[] = data.map((item: any) => ({
             courseId: item.courseId,
             title: item.title,
             description: item.description,
             price: item.price,
             thumbnail: item.thumbnail,
+            level: item.level,
             instructor: {
                 username: item.instructor?.username,
                 fullName: item.instructor?.fullName,
@@ -69,28 +113,31 @@ const CourseList = () => {
             category: item.category
                 ? {
                     categoryId: item.category.categoryId,
-                    categoryName: item.category.categoryName,
+                    categoryName: item.category.categoryName?.toLowerCase(),
                 }
                 : undefined,
         }));
-
-        // sort (giữ logic cũ của bạn)
         const sortedCourses = [...mappedCourses].sort((a, b) =>
-            a.description.localeCompare(b.description)
+            a.title.localeCompare(b.title)
         );
-
-        // filter
-        if (filterValue === "") {
-            setCourses(sortedCourses);
-        } else {
-            setCourses(
-                sortedCourses.filter(
-                    (c) =>
-                        c.title.toLowerCase().includes(filterValue.toLowerCase()) ||
-                        c.description?.toLowerCase().includes(filterValue.toLowerCase())
-                )
-            );
-        }
+        const categories = Array.from(
+            new Set(
+                mappedCourses
+                    .map((c) => c.category?.categoryName)
+                    .filter((name): name is string => typeof name === "string")
+            )
+        );
+        const levels = Array.from(
+            new Set(
+                mappedCourses
+                    .map((c) => c.level)
+                    .filter((level): level is string => typeof level === "string")
+            )
+        );
+        setAllCourses(sortedCourses);
+        setFilteredCourses(sortedCourses);
+        setCategoryOptions(categories);
+        setLevelOptions(levels);
     }
 
     return (

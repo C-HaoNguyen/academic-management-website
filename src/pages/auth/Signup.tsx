@@ -36,7 +36,6 @@ const Signup = () => {
                     signupFullName: fullName,
                     signupEmail: email,
                     signupPassword: password,
-                    signupRole: "student",
                 }),
             });
 

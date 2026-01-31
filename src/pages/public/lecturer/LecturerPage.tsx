@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import TeacherCard, { type Teacher } from "../../../components/common/TeacherCard";
+import TeacherCard, { type Teacher } from "../../../components/public/TeacherCard";
 
 const lecturers: Teacher[] = [
     {

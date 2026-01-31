@@ -3,16 +3,16 @@ import ProtectedRoute from "./ProtectedRoute";
 
 import HomePage from "../pages/public/home/HomePage";
 import LecturerPage from "../pages/public/lecturer/LecturerPage";
-import ContactPage from "../pages/public/about/ContacePage";
+import ContactPage from "../pages/public/about/ContactPage";
 import Login from "../pages/auth/Login";
 import Signup from "../pages/auth/Signup";
 import CourseList from "../pages/public/courses/CourseListPage";
-import CourseDetail from "../pages/public/courses/CourseDetail";
+import CourseDetail from "../pages/public/courses/CourseDetailPage";
 import Checkout from "../pages/public/payment/Checkout";
 
-import PublicLayout from "../components/layout/public/PublicLayout";
-import StudentLayout from "../components/layout/student/StudentLayout";
-import AdminLayout from "../components/layout/admin/AdminLayout";
+import PublicLayout from "../components/public/PublicLayout";
+import StudentLayout from "../components/student/StudentLayout";
+import AdminLayout from "../components/admin/AdminLayout";
 
 {/* STUDENT */ }
 import Dashboard from "../pages/student/dashboard/Dashboard";
@@ -23,8 +23,8 @@ import Profile from "../pages/student/learning-profile/Profile";
 
 {/* ADMIN */ }
 import AdminDashboard from "../pages/admin/AdminDashboard";
-import AdminUsers from "../pages/admin/AdminUsers";
-import AdminCourses from "../pages/admin/AdminCourses";
+import AdminUsersList from "../pages/admin/users/AdminUsersList";
+import AdminCourses from "../pages/admin/courses/AdminCourses";
 import AdminCategories from "../pages/admin/AdminCategories";
 import AdminOrders from "../pages/admin/AdminOrders";
 
@@ -81,7 +81,7 @@ const AppRoutes = () => {
                     }
                 >
                     <Route path="dashboard" element={<AdminDashboard />} />
-                    <Route path="users" element={<AdminUsers />} />
+                    <Route path="users" element={<AdminUsersList />} />
                     <Route path="courses" element={<AdminCourses />} />
                     <Route path="categories" element={<AdminCategories />} />
                     <Route path="orders" element={<AdminOrders />} />

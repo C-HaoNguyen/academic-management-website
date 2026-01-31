@@ -60,7 +60,7 @@ const OrderSummary = ({
                         value={coupon}
                         onChange={(e) => onCouponChange?.(e.target.value)}
                         placeholder="Nhập mã giảm giá"
-                        className="flex-1 rounded-xl border-blue-200 px-4 py-2 text-sm"
+                        className="flex-1 rounded-lg border-blue-800 px-4 py-2 text-sm"
                     />
                     <button
                         onClick={onApplyCoupon}

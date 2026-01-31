@@ -20,8 +20,8 @@ const HomePage = () => {
                         </h1>
 
                         <p className="mt-6 text-gray-600 text-lg">
-                            Ademy giúp học viên và giảng viên có thể theo dõi
-                            tiến trình học tập, quản lý khóa học và nâng cao hiệu quả đào tạo.
+                            Ademy giúp học viên có thể theo dõi
+                            tiến trình học tập, quản lý khóa học và nâng cao hiệu quả học tập.
                         </p>
 
                         <div className="mt-8 flex gap-4">

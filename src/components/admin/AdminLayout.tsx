@@ -4,23 +4,22 @@ import AdminSidebar from "./AdminSidebar";
 
 const AdminLayout = () => {
     return (
-        <div className="min-h-screen flex bg-gray-50">
-            {/* Header */}
+        <div className="min-h-screen bg-gray-50">
             <div className="fixed top-0 left-0 right-0 h-16 z-50">
                 <AdminHeader />
             </div>
 
-            {/* Body */}
-            <div className="pt-16">
-                <aside className="w-64 bg-white border-r flex flex-col fixed top-16 left-0 h-[calc(100vh-64px)]">
+            <div className="pt-16 flex">
+                <aside className="w-48 fixed left-0 top-16 h-[calc(100vh-48px)] bg-white border-r">
                     <AdminSidebar />
                 </aside>
 
-                <main className="ml-64 h-[calc(100vh-64px)] overflow-y-auto p-6 bg-gray-50">
+                <main className="ml-48 flex-1 p-6 bg-gray-50 min-h-[calc(100vh-48px)]">
                     <Outlet />
                 </main>
             </div>
         </div>
+
     );
 };
 

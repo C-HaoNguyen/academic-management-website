@@ -8,7 +8,6 @@ type PaymentSuccessOverlayProps = {
 
 const PaymentSuccessOverlay = ({
     open,
-    onClose,
 }: PaymentSuccessOverlayProps) => {
 
     return (

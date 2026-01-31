@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import PaymentForm from "../../../components/checkout/PaymentForm";
 import OrderSummary from "../../../components/checkout/OrderSummary";
-import PaymentSuccessOverlay from "../../../components/checkout/PaymentSuccessOverlay";
+import PaymentSuccessOverlay from "../../../components/checkout/EnrollSuccessOverlay";
 import { getAccessToken } from "../../../utils/AuthUtils";
 
 type CourseDetail = {

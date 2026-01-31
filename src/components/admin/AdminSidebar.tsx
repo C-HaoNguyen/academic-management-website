@@ -16,7 +16,7 @@ const AdminSidebar = () => {
         }`;
 
     return (
-        <aside className="w-64 bg-white border-r min-h-screen">
+        <aside className="w-48 bg-white border-r min-h-screen">
             <div className="p-4 text-xl font-bold">
                 Trang quản lý
             </div>
