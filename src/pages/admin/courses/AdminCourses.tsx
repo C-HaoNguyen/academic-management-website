@@ -3,10 +3,17 @@ import { getAccessToken } from "../../../utils/AuthUtils";
 import { Notebook, Pencil, Trash2, Plus } from "lucide-react";
 import { authFetch } from "../../../utils/AuthFetch";
 import AddCourseOverlay from "../../../components/admin/AddCourseOverlay";
+import Toast from "../../../components/common/Toast";
 
 const AdminCourses = () => {
     const [showAddCourseOverlay, setShowAddCourseOverlay] = useState(false);
     const [showDeleteCourseOverlay, setShowDeleteCourseOverlay] = useState(false);
+    type ToastType = "success" | "error";
+
+    const [toast, setToast] = useState<{
+        message: string;
+        type: ToastType;
+    } | null>(null);
 
     const [deletedCourse, setDeletedCourse] = useState<{
         courseId: number;
@@ -47,8 +54,24 @@ const AdminCourses = () => {
     >([]);
 
     useEffect(() => {
+        fetchInstructors();
         refreshCoursesList();
     }, []);
+
+    async function fetchInstructors() {
+        const token = getAccessToken();
+
+        const res = await fetch("http://localhost:8080/admin/instructors", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (!res.ok) return;
+
+        const data = await res.json();
+        setInstructors(data);
+    }
 
     async function refreshCoursesList() {
         try {
@@ -72,9 +95,56 @@ const AdminCourses = () => {
         }
     }
 
-    const handleCreateCourse = () => {
+    const handleCreateCourse = async (formData: any) => {
+        try {
+            const token = getAccessToken();
 
-    }
+            const res = await authFetch(
+                "http://localhost:8080/admin/courses/add",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify(formData),
+                }
+            );
+
+            // đọc body trước để lấy message từ backend
+            const data = await res.json().catch(() => null);
+
+            if (!res.ok) {
+                setToast({
+                    type: "error",
+                    message: data?.message || "Thêm khóa học thất bại",
+                });
+
+                setTimeout(() => setToast(null), 3000);
+                return;
+            }
+
+            setToast({
+                type: "success",
+                message: "Thêm khóa học thành công!",
+            });
+
+            setShowAddCourseOverlay(false);
+            refreshCoursesList();
+
+            setTimeout(() => setToast(null), 3000);
+
+        } catch (err) {
+            console.error(err);
+
+            setToast({
+                type: "error",
+                message: "Lỗi kết nối server",
+            });
+
+            setTimeout(() => setToast(null), 3000);
+        }
+    };
 
     const handleDeleteCourse = async () => {
         if (!deletedCourse) return;
@@ -312,6 +382,7 @@ const AdminCourses = () => {
                     </table>
                 </div>
             </div>
+            {toast && <Toast message={toast.message} type={toast.type} />}
         </div>
     );
 };

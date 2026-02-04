@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Field = ({
@@ -50,6 +50,15 @@ const AddCourseOverlay = ({
     instructors,
     categories,
 }: AddCourseOverlayProps) => {
+    useEffect(() => {
+        if (instructors.length > 0) {
+            setForm((prev) => ({
+                ...prev,
+                instructorId: instructors[0].userId,
+            }));
+        }
+    }, [instructors]);
+
     const [form, setForm] = useState<CreateCoursePayload>({
         title: "",
         description: "",
@@ -75,6 +84,10 @@ const AddCourseOverlay = ({
     };
 
     const handleSubmit = () => {
+        if (!form.instructorId) {
+            alert("Chưa có giảng viên");
+            return;
+        }
         onSubmit(form);
     };
 
@@ -133,6 +146,7 @@ const AddCourseOverlay = ({
                                         name="instructorId"
                                         value={form.instructorId}
                                         onChange={handleChange}
+                                        disabled={instructors.length === 0}
                                         className="w-full border rounded-lg px-4 py-2"
                                     >
                                         {instructors.map((i) => (

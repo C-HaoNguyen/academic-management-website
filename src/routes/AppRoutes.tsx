@@ -17,9 +17,9 @@ import AdminLayout from "../components/admin/AdminLayout";
 {/* STUDENT */ }
 import Dashboard from "../pages/student/dashboard/Dashboard";
 import MyCourses from "../pages/student/my-courses/MyCourses";
-import LearningProfile from "../pages/student/learning-profile/LearningProfile";
+import LearningProfile from "../pages/student/learning-profile/LearningProgress";
 import TestPractice from "../pages/student/test-practice/TestPractice";
-import Profile from "../pages/student/learning-profile/Profile";
+import Profile from "../pages/student/profile/Profile";
 
 {/* ADMIN */ }
 import AdminDashboard from "../pages/admin/AdminDashboard";

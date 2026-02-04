@@ -71,7 +71,7 @@ const AdminHeader = () => {
                         "
                     >
                         <img
-                            src="https://i.pravatar.cc/40?img=12"
+                            src="https://cdn-icons-png.flaticon.com/512/8188/8188362.png"
                             alt="admin avatar"
                             className="w-8 h-8 rounded-full object-cover"
                         />

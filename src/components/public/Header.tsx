@@ -103,7 +103,7 @@ function Header() {
                                         className="flex items-center gap-2 px-2 py-1 rounded-full hover:bg-gray-100 transition-all"
                                     >
                                         <img
-                                            src="https://i.pravatar.cc/40"
+                                            src="https://cdn-icons-png.flaticon.com/512/8188/8188362.png"
                                             alt="avatar"
                                             className="w-8 h-8 rounded-full object-cover"
                                         />
