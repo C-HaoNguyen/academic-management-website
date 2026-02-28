@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { ChevronDown, LogOut, User } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../utils/AuthUtils";
+import logo from "../../assets/logo.svg"
 
 type Tab = {
     id: string;
@@ -41,18 +42,18 @@ function Header() {
 
                     {/* Logo */}
                     <div className="text-xl font-bold text-blue-600">
-                        Ademy
+                        <img src={logo} alt="Logo" className="h-20 w-20" />
                     </div>
 
                     {/* Tabs */}
-                    <nav className="flex items-center space-x-2">
+                    <nav className="flex items-center space-x-4">
                         {tabs.map((tab) => (
                             <NavLink
                                 key={tab.id}
                                 to={tab.href}
                                 end={tab.href === "/"}
                                 className={({ isActive }) =>
-                                    `relative px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200
+                                    `relative px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-200
                                     ${isActive
                                         ? "bg-blue-100 text-blue-700 shadow-sm"
                                         : "text-gray-600 hover:bg-gray-100 hover:text-blue-600"}`
@@ -69,14 +70,14 @@ function Header() {
                             <>
                                 <NavLink
                                     to="/login"
-                                    className="px-4 py-2 text-base font-medium text-blue-600 rounded-xl transition-all duration-200 hover:bg-blue-100 hover:text-blue-800"
+                                    className="px-6 py-2 text-base font-medium text-primary rounded-xl transition-all duration-200 hover:bg-blue-50 hover:text-blue-800"
                                 >
                                     Đăng nhập
                                 </NavLink>
 
                                 <NavLink
                                     to="/signup"
-                                    className="px-4 py-2 text-base font-medium text-white bg-blue-600 rounded-xl transition-all duration-200 hover:bg-blue-700 shadow-sm"
+                                    className="px-6 py-2 text-base font-medium text-white bg-primary rounded-xl transition-all duration-200 hover:bg-blue-800 shadow-sm"
                                 >
                                     Đăng ký
                                 </NavLink>
@@ -88,7 +89,7 @@ function Header() {
                                     onClick={() => navigate("/student/dashboard")}
                                     className="px-4 py-2 rounded-xl
                                                 text-sm font-semibold
-                                                text-white bg-blue-600
+                                                text-white bg-primary
                                                 hover:bg-blue-700
                                                 transition-all duration-200
                                                 shadow-sm

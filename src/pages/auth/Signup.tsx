@@ -1,6 +1,7 @@
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "../../assets/logo.svg"
 
 const Signup = () => {
 
@@ -57,11 +58,11 @@ const Signup = () => {
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <form
                 onSubmit={(e) => e.preventDefault()}
-                className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md"
+                className="bg-white px-8 py-6 rounded-2xl shadow-lg w-full max-w-md"
             >
                 <Link
                     to="/"
-                    className="flex justify-center mb-4"
+                    className="flex justify-center"
                 >
                     <div className="flex items-center gap-2 cursor-pointer">
                         <div
@@ -71,9 +72,7 @@ const Signup = () => {
                         >
                             A
                         </div>
-                        <span className="text-xl font-semibold text-blue-500">
-                            Ademy
-                        </span>
+                        <img src={logo} alt="Logo" className="h-24 w-24" />
                     </div>
                 </Link>
 
@@ -82,7 +81,7 @@ const Signup = () => {
                 </h2>
 
                 {/* Full name */}
-                <div className="mb-4">
+                <div className="mb-2">
                     <label className="block text-gray-700 mb-2">
                         Họ và tên
                     </label>
@@ -97,7 +96,7 @@ const Signup = () => {
                 </div>
 
                 {/* Username */}
-                <div className="mb-4">
+                <div className="mb-2">
                     <label className="block text-gray-700 mb-2">
                         Tên đăng nhập
                     </label>
@@ -112,7 +111,7 @@ const Signup = () => {
                 </div>
 
                 {/* Email */}
-                <div className="mb-4">
+                <div className="mb-2">
                     <label className="block text-gray-700 mb-2">
                         Email
                     </label>
@@ -127,7 +126,7 @@ const Signup = () => {
                 </div>
 
                 {/* Password */}
-                <div className="mb-4">
+                <div className="mb-2">
                     <label className="block text-gray-700 mb-2">
                         Mật khẩu
                     </label>
@@ -158,7 +157,7 @@ const Signup = () => {
                 </div>
 
                 {/* Confirm password */}
-                <div className="mb-4">
+                <div className="mb-2">
                     <label className="block text-gray-700 mb-2">
                         Xác nhận mật khẩu
                     </label>
@@ -188,7 +187,7 @@ const Signup = () => {
                 </div>
 
                 {/* Terms & conditions */}
-                <div className="mb-4">
+                <div className="mb-6 mt-4">
                     <label className="flex items-start gap-2 text-sm text-gray-600 cursor-pointer">
                         <input
                             type="checkbox"

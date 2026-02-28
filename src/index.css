@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Sans:wght@200..800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,9 +19,19 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 @keyframes modalPop {
@@ -27,6 +39,7 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
         opacity: 0;
         transform: translateY(12px) scale(0.96);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -46,6 +59,7 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
         transform: translateX(100%);
         opacity: 0;
     }
+
     to {
         transform: translateX(0);
         opacity: 1;

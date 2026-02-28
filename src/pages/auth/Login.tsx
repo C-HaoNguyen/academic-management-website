@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import logo from "../../assets/logo.svg"
 
 const Login = () => {
 
@@ -9,8 +10,6 @@ const Login = () => {
     const from = location.state?.from || null;
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [usernameTouched, setUsernameTouched] = useState(false);
-    const [passwordTouched, setPasswordTouched] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -76,9 +75,7 @@ const Login = () => {
                         text-white font-bold text-lg">
                         A
                     </div>
-                    <span className="text-xl font-semibold text-blue-500">
-                        Ademy
-                    </span>
+                    <img src={logo} alt="Logo" className="h-24 w-24" />
                 </Link>
 
                 <h2 className="text-2xl font-semibold text-center mb-6 text-gray-800">
