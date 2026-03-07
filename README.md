@@ -1,6 +1,6 @@
 # 📚 Academic Management Website
 
-Một nền tảng quản lý học tập toàn diện được xây dựng bằng React, TypeScript và Tailwind CSS. Đây là **dự án cá nhân** nhằm xây dựng hệ thống quản lý học tập hiện đại với giao diện thân thiện và chức năng đầy đủ.
+Một nền tảng quản lý học tập toàn diện được xây dựng bằng React, TypeScript và Tailwind CSS. Đây là **dự án cá nhân** nhằm xây dựng hệ thống quản lý khóa học, học tập hiện đại với giao diện thân thiện và đầy đủ chức năng của một website học online.
 
 ## 📖 Giới Thiệu Chi Tiết
 
@@ -8,9 +8,9 @@ Một nền tảng quản lý học tập toàn diện được xây dựng bằ
 
 Dự án này nhằm mục đích tạo ra một nền tảng quản lý học tập hoàn chỉnh, cho phép các sinh viên, giảng viên và quản trị viên có thể tương tác với nhau một cách hiệu quả. Hệ thống được thiết kế với kiến trúc ba tầng:
 
-1. **Lớp Giao Diện (UI)**: Xây dựng bằng React + TypeScript với giao diện đẹp mắt sử dụng Tailwind CSS
+1. **Lớp Giao Diện (UI)**: Xây dựng bằng React + TypeScript, sử dụng Tailwind CSS để xây dựng UI.
 2. **Lớp Logic**: Xử lý logic business, quản lý state, gọi API
-3. **Lớp Dữ Liệu**: Tương tác với backend API (chưa được triển khai)
+3. **Lớp Dữ Liệu**: Tương tác với backend API (triển khai với repository Java tại: LINK)
 
 ### ✨ Tính Năng Chính
 
@@ -191,7 +191,7 @@ npm ci
 ### 👨‍💼 Cho Quản Trị Viên
 - **Dashboard**: `/admin` - Xem thống kê tổng quan
 - **Người Dùng**: `/admin/users` - Quản lý tài khoản, vai trò
-- **Khóa Học**: `/admin/courses` - Duyệt duyệt khóa học
+- **Khóa Học**: `/admin/courses` - Duyệt khóa học
 - **Danh Mục**: `/admin/categories` - Quản lý danh mục
 - **Đơn Hàng**: `/admin/orders` - Xem lịch sử thanh toán
 
@@ -272,8 +272,6 @@ debugger; // Dừng tại đây khi mở DevTools
 ## 📝 Ghi Chú Phát Triển
 
 ### ⏳ Điểm Chưa Hoàn Thành
-- [ ] Backend API (cần tạo API server với Node.js/Express, Django, v.v.)
-- [ ] Database (cần setup MongoDB, PostgreSQL, MySQL, v.v.)
 - [ ] Deployment/Hosting (Netlify, Vercel, GitHub Pages, v.v.)
 - [ ] Auto email confirmation khi đăng ký
 - [ ] Password reset functionality

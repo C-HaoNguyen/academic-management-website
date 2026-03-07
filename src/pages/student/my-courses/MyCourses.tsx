@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAccessToken } from "../../../utils/AuthUtils";
+import API_URL from "../../api";
 
 type MyCourse = {
     courseId: number;
@@ -18,7 +19,7 @@ const MyCourses = () => {
     async function fetchMyCourses() {
         try {
             const res = await fetch(
-                "http://localhost:8080/enrollments/student/me/courses",
+                `${API_URL}/enrollments/student/me/courses`,
                 {
                     method: "GET",
                     headers: {

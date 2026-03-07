@@ -2,6 +2,7 @@ import { User, Pencil, Plus, UserX, UserCheck, Unlock } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getAccessToken } from "../../../utils/AuthUtils";
 import CreateUser from "../../../components/admin/AddUserOverlay";
+import API_URL from "../../api";
 
 const AdminUsersList = () => {
     const [showOverlayAddUser, setShowOverlayAddUser] = useState(false);
@@ -43,7 +44,7 @@ const AdminUsersList = () => {
         try {
             const token = getAccessToken();
 
-            const res = await fetch("http://localhost:8080/admin/users", {
+            const res = await fetch(`${API_URL}/admin/users`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -68,7 +69,7 @@ const AdminUsersList = () => {
             ? `/admin/users/${user.userId}/lock`
             : `/admin/users/${user.userId}/unlock`;
 
-        await fetch(`http://localhost:8080${url}`, {
+        await fetch(`${API_URL}${url}`, {
             method: "PUT",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -85,7 +86,7 @@ const AdminUsersList = () => {
             const token = getAccessToken();
 
             const res = await fetch(
-                `http://localhost:8080/admin/deleted-user`,
+                `${API_URL}/admin/deleted-user`,
                 {
                     method: "DELETE",
                     headers: {

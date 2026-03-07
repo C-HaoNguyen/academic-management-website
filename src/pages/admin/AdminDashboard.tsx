@@ -11,6 +11,7 @@ import {
     BarChart3,
 } from "lucide-react";
 import { getAccessToken } from "../../utils/AuthUtils";
+import API_URL from "../api";
 
 const StatCard = ({
     icon,
@@ -42,7 +43,7 @@ const AdminDashboard = () => {
     const [totalCourses, setTotalCourses] = useState<number>(0);
 
     useEffect(() => {
-        fetch("http://localhost:8080/admin/total-users", {
+        fetch(`${API_URL}/admin/total-users`, {
             headers: {
                 Authorization: `Bearer ${getAccessToken()}`,
             },
@@ -57,7 +58,7 @@ const AdminDashboard = () => {
     }, []);
 
     useEffect(() => {
-        fetch("http://localhost:8080/admin/total-courses", {
+        fetch(`${API_URL}/admin/total-courses`, {
             headers: {
                 Authorization: `Bearer ${getAccessToken()}`,
             },

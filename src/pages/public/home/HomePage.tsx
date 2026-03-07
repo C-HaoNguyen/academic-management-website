@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { getAccessToken } from "../../../utils/AuthUtils";
 import { ArrowBigLeft, ArrowBigRight } from "lucide-react";
+import API_URL from "../../api";
 
 const HomePage = () => {
     const scrollRef = useRef<HTMLDivElement>(null);
@@ -20,7 +21,7 @@ const HomePage = () => {
     };
 
     useEffect(() => {
-        fetch("http://localhost:8080/admin/total-courses", {
+        fetch(`${API_URL}/admin/total-courses`, {
             headers: {
                 Authorization: `Bearer ${getAccessToken()}`,
             },

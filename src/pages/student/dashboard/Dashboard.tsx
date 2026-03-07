@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getAccessToken } from "../../../utils/AuthUtils";
+import API_URL from "../../api";
 
 const StatCard = ({
     icon,
@@ -39,7 +40,7 @@ const Dashboard = () => {
     const [totalCourses, setTotalCourses] = useState<number>(0);
 
     useEffect(() => {
-        fetch("http://localhost:8080/enrollments/student/me/summary", {
+        fetch(`${API_URL}/enrollments/student/me/summary`, {
             headers: {
                 Authorization: `Bearer ${getAccessToken()}`,
             },

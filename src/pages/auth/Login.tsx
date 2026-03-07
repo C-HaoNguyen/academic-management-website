@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg"
+import API_URL from "../api";
 
 const Login = () => {
 
@@ -17,7 +18,7 @@ const Login = () => {
         try {
             setError(null);
 
-            const response = await fetch("http://localhost:8080/auth/login", {
+            const response = await fetch(`${API_URL}/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

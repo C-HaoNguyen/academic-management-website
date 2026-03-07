@@ -4,6 +4,7 @@ import { Notebook, Pencil, Trash2, Plus } from "lucide-react";
 import { authFetch } from "../../../utils/AuthFetch";
 import AddCourseOverlay from "../../../components/admin/AddCourseOverlay";
 import Toast from "../../../components/common/Toast";
+import API_URL from "../../api";
 
 const AdminCourses = () => {
     const [showAddCourseOverlay, setShowAddCourseOverlay] = useState(false);
@@ -61,7 +62,7 @@ const AdminCourses = () => {
     async function fetchInstructors() {
         const token = getAccessToken();
 
-        const res = await fetch("http://localhost:8080/admin/instructors", {
+        const res = await fetch(`${API_URL}/admin/instructors`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -77,7 +78,7 @@ const AdminCourses = () => {
         try {
             const token = getAccessToken();
 
-            const res = await fetch("http://localhost:8080/admin/courses", {
+            const res = await fetch(`${API_URL}/admin/courses`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -100,7 +101,7 @@ const AdminCourses = () => {
             const token = getAccessToken();
 
             const res = await authFetch(
-                "http://localhost:8080/admin/courses/add",
+                `${API_URL}/admin/courses/add`,
                 {
                     method: "POST",
                     headers: {
@@ -153,7 +154,7 @@ const AdminCourses = () => {
             const token = getAccessToken();
 
             const res = await authFetch(
-                `http://localhost:8080/admin/deleted-course`,
+                `${API_URL}/admin/deleted-course`,
                 {
                     method: "DELETE",
                     headers: {

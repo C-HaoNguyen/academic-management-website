@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { getAccessToken } from "../../../utils/AuthUtils";
 import EnrollSuccessOverlay from "../../../components/checkout/EnrollSuccessOverlay";
+import API_URL from "../../api";
 
 type CourseDetailType = {
     courseId: number;
@@ -37,7 +38,7 @@ const CourseDetail = () => {
     async function fetchCourseDetail() {
         try {
             const res = await fetch(
-                `http://localhost:8080/courses/${courseId}`,
+                `${API_URL}/courses/${courseId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${getAccessToken()}`,
@@ -66,7 +67,7 @@ const CourseDetail = () => {
         }
 
         try {
-            const res = await fetch("http://localhost:8080/enrollments", {
+            const res = await fetch(`${API_URL}/enrollments`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

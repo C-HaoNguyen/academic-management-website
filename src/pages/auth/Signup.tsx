@@ -1,7 +1,8 @@
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.svg"
+import { API_URL } from '../../config/constants';
+import logo from "../../assets/logo.svg";
 
 const Signup = () => {
 
@@ -27,7 +28,7 @@ const Signup = () => {
 
     const handleSignup = async () => {
         try {
-            const response = await fetch("http://localhost:8080/auth/signup", {
+            const response = await fetch(`${API_URL}/auth/signup`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

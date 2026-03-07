@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import CourseCard from "../../../components/public/CourseCard";
 import { getAccessToken } from "../../../utils/AuthUtils";
+import API_URL from "../../api";
 
 const toggleValue = (
     value: string,
@@ -93,7 +94,7 @@ const CourseList = () => {
     }, [filterValue, categories, levels, allCourses]);
 
     async function refreshCourseList() {
-        const response = await fetch("http://localhost:8080/courses", {
+        const response = await fetch(`${API_URL}/courses`, {
             headers: {
                 Authorization: `Bearer ${getAccessToken()}`,
             },

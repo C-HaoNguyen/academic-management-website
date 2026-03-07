@@ -3,6 +3,7 @@ import { type UserProfile } from "../../../types/User";
 import InfoItem from "../../../components/student/InfoItem";
 import Badge from "../../../components/common/Badge";
 import Toast from "../../../components/common/Toast";
+import API_URL from "../../api";
 
 const Profile = () => {
     const [user, setUser] = useState<UserProfile | null>(null);
@@ -19,7 +20,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const res = await fetch("http://localhost:8080/users/me", {
+                const res = await fetch(`${API_URL}/users/me`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
                     },
@@ -47,7 +48,7 @@ const Profile = () => {
         if (!user) return;
 
         try {
-            const res = await fetch("http://localhost:8080/users/me/update", {
+            const res = await fetch(`${API_URL}/users/me/update`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

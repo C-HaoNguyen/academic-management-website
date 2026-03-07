@@ -4,6 +4,7 @@ import PaymentForm from "../../../components/checkout/PaymentForm";
 import OrderSummary from "../../../components/checkout/OrderSummary";
 import PaymentSuccessOverlay from "../../../components/checkout/EnrollSuccessOverlay";
 import { getAccessToken } from "../../../utils/AuthUtils";
+import API_URL from "../../api";
 
 type CourseDetail = {
     courseId: number;
@@ -27,7 +28,7 @@ const Checkout = () => {
     useEffect(() => {
         if (!courseId) return;
 
-        fetch(`http://localhost:8080/courses/${courseId}`, {
+        fetch(`${API_URL}/courses/${courseId}`, {
             headers: {
                 Authorization: `Bearer ${getAccessToken()}`
             }
@@ -54,7 +55,7 @@ const Checkout = () => {
         if (!course) return;
 
         try {
-            await fetch("http://localhost:8080/enrollments", {
+            await fetch(`${API_URL}/enrollments`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
