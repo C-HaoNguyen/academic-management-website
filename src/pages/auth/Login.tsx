@@ -65,11 +65,11 @@ const Login = () => {
                     e.preventDefault();
                     handleLogin();
                 }}
-                className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md"
+                className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-lg"
             >
                 <Link
                     to="/"
-                    className="flex items-center justify-center gap-2 mb-4 text-gray-800 hover:text-blue-600 transition"
+                    className="flex items-center justify-center gap-2 text-gray-800 hover:text-blue-600 transition"
                 >
                     <div className="w-10 h-10 rounded-full bg-blue-600
                         flex items-center justify-center

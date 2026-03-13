@@ -5,6 +5,7 @@ import { authFetch } from "../../../utils/AuthFetch";
 import AddCourseOverlay from "../../../components/admin/AddCourseOverlay";
 import Toast from "../../../components/common/Toast";
 import API_URL from "../../api";
+import { a } from "framer-motion/client";
 
 const AdminCourses = () => {
     const [showAddCourseOverlay, setShowAddCourseOverlay] = useState(false);
@@ -56,6 +57,7 @@ const AdminCourses = () => {
 
     useEffect(() => {
         fetchInstructors();
+        fetchCategories();
         refreshCoursesList();
     }, []);
 
@@ -72,6 +74,21 @@ const AdminCourses = () => {
 
         const data = await res.json();
         setInstructors(data);
+    }
+
+    async function fetchCategories() {
+        const token = getAccessToken();
+
+        const res = await fetch(`${API_URL}/admin/categories`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (!res.ok) return;
+
+        const data = await res.json();
+        setCategories(data);
     }
 
     async function refreshCoursesList() {
@@ -154,16 +171,12 @@ const AdminCourses = () => {
             const token = getAccessToken();
 
             const res = await authFetch(
-                `${API_URL}/admin/deleted-course`,
+                `${API_URL}/admin/deleted-course/${deletedCourse.courseId}`,
                 {
                     method: "DELETE",
                     headers: {
-                        "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`,
                     },
-                    body: JSON.stringify({
-                        userId: deletedCourse.courseId,
-                    }),
                 }
             );
 

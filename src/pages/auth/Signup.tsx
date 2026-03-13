@@ -59,7 +59,7 @@ const Signup = () => {
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <form
                 onSubmit={(e) => e.preventDefault()}
-                className="bg-white px-8 py-6 rounded-2xl shadow-lg w-full max-w-md"
+                className="bg-white px-8 py-6 rounded-2xl shadow-lg w-full max-w-lg"
             >
                 <Link
                     to="/"
@@ -90,6 +90,7 @@ const Signup = () => {
                         type="text"
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
+                        required
                         className="w-full px-4 py-2 border rounded-lg
                                    focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Nguyễn Văn A"
@@ -118,6 +119,7 @@ const Signup = () => {
                     </label>
                     <input
                         type="email"
+                        required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="w-full px-4 py-2 border rounded-lg
