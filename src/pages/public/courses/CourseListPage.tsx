@@ -55,6 +55,7 @@ const CourseList = () => {
     const [levels, setLevels] = useState<string[]>([]);
 
     useEffect(() => {
+        fetchCategories();
         refreshCourseList();
     }, []);
 
@@ -92,6 +93,21 @@ const CourseList = () => {
         setFilteredCourses(result);
         setCurrentPage(1);
     }, [filterValue, categories, levels, allCourses]);
+
+    async function fetchCategories() {
+        const token = getAccessToken();
+
+        const res = await fetch(`${API_URL}/admin/categories`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (!res.ok) return;
+
+        const data = await res.json();
+        setCategories(data);
+    }
 
     async function refreshCourseList() {
         const response = await fetch(`${API_URL}/courses`, {
