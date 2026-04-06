@@ -53,10 +53,10 @@ function Header() {
                                 to={tab.href}
                                 end={tab.href === "/"}
                                 className={({ isActive }) =>
-                                    `relative px-4 py-3 text-sm font-semibold rounded-xl transition-all duration-200
+                                    `relative px-4 py-3 text-base font-bold rounded-xl transition-all duration-200
                                     ${isActive
                                         ? "bg-blue-100 text-blue-700 shadow-sm"
-                                        : "text-gray-600 hover:bg-gray-100 hover:text-blue-600"}`
+                                        : "text-black hover:bg-gray-100 hover:text-blue-600"}`
                                 }
                             >
                                 {tab.label}

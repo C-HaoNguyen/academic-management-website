@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -16,8 +17,7 @@ const Footer = () => {
                         Ademy
                     </h2>
                     <p className="text-sm leading-relaxed text-slate-400">
-                        Academic Management System helping students and instructors
-                        manage learning effectively in the digital era.
+                        Ademy là nền tảng giúp học viên và giảng viên quản lý việc học tập hiệu quả trong thời đại số.
                     </p>
                 </div>
 
@@ -45,9 +45,11 @@ const Footer = () => {
                     <h3 className="text-white font-semibold mb-4">Liên hệ</h3>
                     <ul className="space-y-2 text-sm">
                         <li>Email: support@ademy.edu</li>
-                        <li>Phone: +84 123 456 789</li>
+                        <li>Phone: +84 869 066 421</li>
                         <li className="flex gap-4 mt-4">
-                            <span className="hover:text-white cursor-pointer transition">🌐</span>
+                            <Link to="https://academic-management-website.onrender.com/" target="_blank">
+                                <span className="hover:text-white cursor-pointer transition">🌐</span>
+                            </Link>
                             <span className="hover:text-white cursor-pointer transition">🐦</span>
                             <span className="hover:text-white cursor-pointer transition">📘</span>
                         </li>
